@@ -1,0 +1,25 @@
+{
+  "name": "cederache.github.io",
+  "version": "1.0.0",
+  "description": "personal website",
+  "main": "index.html",
+  "scripts": {
+    "build": "gitfolio build cederache -f --twitter DeracheCedric --linkedin cédric-derache-1b5bb575 --theme dark",
+    "copy": "cp -r dist/* .",
+    "delete": "rm -rf dist",
+    "refresh": "npm run build && npm run copy && npm run delete"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cederache/cederache.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cederache/cederache.github.io/issues"
+  },
+  "homepage": "https://github.com/cederache/cederache.github.io#readme",
+  "dependencies": {
+    "gitfolio": "^0.1.5"
+  }
+}
