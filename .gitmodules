@@ -1,0 +1,3 @@
+[submodule "web-usdz-viewer"]
+	path = web-usdz-viewer
+	url = https://github.com/cederache/web-usdz-viewer.git
