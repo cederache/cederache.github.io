@@ -5,10 +5,10 @@
   "main": "index.html",
   "scripts": {
     "build": "gitfolio build cederache -f --twitter DeracheCedric --linkedin cédric-derache-1b5bb575 --theme dark --background scotland.JPG",
-    "copy": "cp -r dist/* . && sed 's/<\\\/body>/<script src=\\\"autoRefresh.js\\\"><\\\/script><\\\/body>/' index.html > index2.html && rm index.html && mv index2.html index.html",
+    "copy": "cp -r dist/* . && sed 's/<\\/body>/<script src=\\\"autoRefresh.js\\\"><\\/script><\\/body>/' index.html > index2.html && rm index.html && mv index2.html index.html",
     "delete": "rm -rf dist",
     "refresh": "npm run build && npm run copy && npm run delete",
-    "dev": "npm run build && sed 's/<\\\/body>/<script src=\\\"autoRefresh.js\\\"><\\\/script><\\\/body>/' dist/index.html > index2.html && rm dist/index.html && mv index2.html dist/index.html && cp autoRefresh.js dist/autoRefresh.js && gitfolio run -p 3002"
+    "dev": "npm run build && sed 's/<\\/body>/<script src=\\\"autoRefresh.js\\\"><\\/script><\\/body>/' dist/index.html > index2.html && rm dist/index.html && mv index2.html dist/index.html && cp autoRefresh.js dist/autoRefresh.js && gitfolio run -p 3002"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,8 @@
   "dependencies": {
     "gitfolio": "^0.1.5",
     "sed": "0.0.1"
+  },
+  "devDependencies": {
+    "serve": "^11.3.2"
   }
 }
