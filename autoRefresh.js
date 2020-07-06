@@ -20,13 +20,9 @@ var headers = [{
 function httpGet(theUrl, headers) {
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.open("GET", theUrl, false); // false for synchronous request
-	console.log(headers);
 	for (index in headers) {
 		var header = headers[index];
-		console.log(header);
 		xmlHttp.setRequestHeader(header["name"], header["value"]);
-		console.log(header["name"]);
-		console.log(header["value"]);
 	}
 	xmlHttp.send(null);
 	return xmlHttp.responseText;
@@ -43,6 +39,9 @@ var forkInnerHtml = "";
 for (index in reposResponse) {
 	var repo = reposResponse[index];
 
+	console.log(repo);
+	let updatedAt = new Date(repo.updated_at);
+
 	var innerHtml = `<a href="${repo.html_url}" target="_blank">
 						<section>
 							<div class="section_title">${repo.name}</div>
@@ -54,6 +53,7 @@ for (index in reposResponse) {
 								<span><i class="fas fa-star"></i>&nbsp; ${repo.stargazers_count}</span>
 								<span><i class="fas fa-code-branch"></i>&nbsp; ${repo.forks_count}</span>
 							</div>
+							<span style="float:right">Last modification : ${updatedAt.toLocaleDateString()}</span>
 						</section>
 						</a>`;
 	if (repo.fork) {
