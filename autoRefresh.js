@@ -44,11 +44,11 @@ for (index in reposResponse) {
 
 	var innerHtml = `<a href="${repo.html_url}" target="_blank">
 						<section>
-							<div class="section_title">${repo.name}</div>
-							<div class="about_section">
+							<div class="section_title">${repo.name}</div>` +
+							(repo.description !== null ? `<div class="about_section">
 								<span style="display:block;">${repo.description}</span>
-							</div>
-							<div class="bottom_section">
+							</div>` : '') +
+							`<div class="bottom_section">
 								<span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; ${repo.language}</span>
 								<span><i class="fas fa-star"></i>&nbsp; ${repo.stargazers_count}</span>
 								<span><i class="fas fa-code-branch"></i>&nbsp; ${repo.forks_count}</span>
