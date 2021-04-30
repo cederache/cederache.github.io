@@ -24,9 +24,12 @@
     <div id="profile_img" style="background: url(https://avatars3.githubusercontent.com/u/3966864?v=4) center;"></div>
     <div id="username"><span style="display:block;">Derache Cédric</span><a
         href="https://github.com/cederache">@cederache</a></div>
-    <div id="userbio" style="display: block;">Lead Developer at Bloc In Bloc
-
-      Building app in AR / MR / VR on mobile, HoloLens, MagicLeap, HTC Vive for the building construction industry</div>
+    <div id="userbio" style="display: block;">
+      <span>Lead Developer at Bloc In Bloc</span>
+      <BR/>
+      <BR/>
+      <span>Building AR app in Swift / SwiftUI / Unity for the building construction industry</span>
+    </div>
     <div id="about">
       <span style="display:block;"><i class="fas fa-users"></i> &nbsp; Bloc In Bloc</span>
       <span style="display:none;"><i class="fas fa-envelope"></i> &nbsp; null</span>
@@ -43,6 +46,7 @@
             class="socials"><i class="fab fa-linkedin-in"></i></a></span>
         <span style="display:none !important;"><a href="https://www.medium.com/@undefined/" target="_blank"
             class="socials"><i class="fab fa-medium-m"></i></a></span>
+        <p>made on earth by a human</p>
       </div>
     </div>
   </div>
@@ -56,12 +60,12 @@
       <h1>Forks.</h1>
       <div class="projects" id="forks_section"></div>
     </div>
-    <div id="blog_section">
+    <div id="blog_section" style="display: none;">
       <h1>Blog.</h1>
       <div id="blogs"></div>
     </div>
     <div id="footer">
-      <a href="https://github.com/imfunniee" target="_blank">made on earth by a human</a>
+      <p>Automatic list of github repositories and forks</p>
     </div>
   </div>
   <script type="text/javascript">
@@ -74,7 +78,7 @@
         document.getElementById("loading").style.display = "none";
       }, 800);
     }, 1500);
-    $.getJSON("blog.json", function (blog) {
+    $.getJSON("blog/list.json", function (blog) {
       blog = blog || [];
       if (blog.length == 0) {
         return (document.getElementById("blog_section").style.display =
@@ -108,7 +112,8 @@
       static: false,
       useMin: false,
       maxColumns: 1,
-      useTransform: true
+      useTransform: true,
+      items: 20
     });
 
     const magicForksGrid = new MagicGrid({
@@ -118,7 +123,8 @@
       static: false,
       useMin: false,
       maxColumns: 1,
-      useTransform: true
+      useTransform: true,
+      items: 20
     });
 
     $("document").ready(() => {

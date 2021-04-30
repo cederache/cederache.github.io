@@ -28,7 +28,15 @@ function httpGet(theUrl, headers) {
 	return xmlHttp.responseText;
 }
 
-const reposResponse = JSON.parse(httpGet(`https://api.github.com/users/${config[0].username}/repos`, headers));
+const reposResponse = JSON.parse(httpGet(`https://api.github.com/users/${config[0].username}/repos`, headers)).sort((a, b) => {
+	const aUpdatedAt = Date.parse(a.updated_at);
+	const bUpdatedAt = Date.parse(b.updated_at);
+	
+	if (aUpdatedAt === NaN || bUpdatedAt === NaN) {
+		return a.name.localeCompare(b.name);
+	}
+	return bUpdatedAt - aUpdatedAt;
+});
 
 const work_section = document.getElementById("work_section");
 const fork_section = document.getElementById("forks_section");
@@ -38,9 +46,6 @@ var forkInnerHtml = "";
 // Loop over repos
 for (index in reposResponse) {
 	var repo = reposResponse[index];
-
-	console.log(repo);
-	let updatedAt = new Date(repo.updated_at);
 
 	var innerHtml = `<a href="${repo.html_url}" target="_blank">
 						<section>
@@ -53,7 +58,7 @@ for (index in reposResponse) {
 								<span><i class="fas fa-star"></i>&nbsp; ${repo.stargazers_count}</span>
 								<span><i class="fas fa-code-branch"></i>&nbsp; ${repo.forks_count}</span>
 							</div>
-							<span style="float:right">Last modification : ${updatedAt.toLocaleDateString()}</span>
+							<span style="float:right">Last modification : ${(new Date(repo.updated_at)).toLocaleDateString()}</span>
 						</section>
 						</a>`;
 	if (repo.fork) {
