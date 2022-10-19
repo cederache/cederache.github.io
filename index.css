@@ -259,6 +259,7 @@ body {
   font-family: "Questrial", sans-serif;
 }
 
+#userbio a,
 #about a,
 #username a {
   color: #fff !important;
@@ -266,6 +267,7 @@ body {
   font-weight: bold;
 }
 
+#userbio a,
 #about a:hover,
 #username a:hover {
   text-decoration: underline;
