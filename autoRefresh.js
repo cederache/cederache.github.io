@@ -36,14 +36,16 @@ function httpGet(theUrl, headers) {
   return xhr.responseText;
 }
 
-const reposResponse = JSON.parse(httpGet(`https://api.github.com/users/${config[0].username}/repos`, headers)).sort((a, b) => {
-	const aUpdatedAt = Date.parse(a.updated_at);
-	const bUpdatedAt = Date.parse(b.updated_at);
-	
-	if (aUpdatedAt === NaN || bUpdatedAt === NaN) {
-		return a.name.localeCompare(b.name);
-	}
-	return bUpdatedAt - aUpdatedAt;
+const reposResponse = JSON.parse(
+  httpGet(`https://api.github.com/users/${config[0].username}/repos`, headers)
+).sort((a, b) => {
+  const aUpdatedAt = Date.parse(a.pushed_at);
+  const bUpdatedAt = Date.parse(b.pushed_at);
+
+  if (isNaN(aUpdatedAt) || isNaN(bUpdatedAt)) {
+    return a.name.localeCompare(b.name);
+  }
+  return bUpdatedAt - aUpdatedAt;
 });
 
 const repos_section = document.getElementById("repos_section");
@@ -75,7 +77,9 @@ for (index in reposResponse) {
 								<span><i class="fas fa-star"></i>&nbsp; ${repo.stargazers_count}</span>
 								<span><i class="fas fa-code-branch"></i>&nbsp; ${repo.forks_count}</span>
 							</div>
-							<span style="float:right">Last modification : ${(new Date(repo.updated_at)).toLocaleDateString()}</span>
+							<span style="float:right">Last push : ${new Date(
+                repo.pushed_at
+              ).toLocaleDateString()}</span>
 						</section>
 						</a>`;
   if (repo.fork) {
