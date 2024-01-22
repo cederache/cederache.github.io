@@ -51,8 +51,8 @@ body {
 
 #profile {
   width: 24vw;
-  padding: 4vh 3vw;
-  height: 92vh;
+  padding: 0 3vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -282,7 +282,7 @@ body {
   font-size: 16px;
 }
 
-#work {
+#repos {
   margin: 2vh 0px;
   padding: 4vh 0px !important;
 }
@@ -459,7 +459,7 @@ body {
     margin: 0px auto !important;
   }
 
-  #work {
+  #repos {
     margin: 0px;
   }
 
@@ -595,4 +595,109 @@ body {
       ),
       url("scotland.JPG") !important;
   }
+}
+
+/* Add a black background color to the top navigation bar */
+.topnav {
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Style the search box inside the navigation bar */
+.topnav input[type=text] {
+  float: right;
+  padding: 6px;
+  border: none;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
+}
+
+/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+@media screen and (max-width: 600px) {
+
+  .topnav a,
+  .topnav input[type=text] {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+
+  .topnav input[type=text] {
+    border: 1px solid #ccc;
+  }
+}
+
+#links {
+  padding-bottom: 2vh;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: black;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  min-width: 180px;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover,
+.dropbtn:focus {
+  background-color: black;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+  display: block;
 }

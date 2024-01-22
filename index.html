@@ -1,91 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>cederache</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/781d7289de.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/magic-grid/dist/magic-grid.min.js"></script>
+    <link rel="stylesheet" href="index.css" />
+    <link
+      rel="icon"
+      href="https://avatars3.githubusercontent.com/u/3966864?v=4"
+      type="image/png"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>cederache</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
-    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/magic-grid/dist/magic-grid.min.js"></script>
-  <link rel="stylesheet" href="index.css">
-  <link rel="icon" href="https://avatars3.githubusercontent.com/u/3966864?v=4" type="image/png">
-</head>
-
-<body>
-  <div id="loading">
-    <div id="spinner"></div>
-  </div>
-  <div id="profile">
-    <div id="profile_img" style="background: url(https://avatars3.githubusercontent.com/u/3966864?v=4) center;"></div>
-    <div id="username"><span style="display:block;">Derache Cédric</span><a
-        href="https://github.com/cederache">@cederache</a></div>
-    <div id="userbio" style="display: block;">
-      <span>iOS Developer at <a href="https://beapp.fr/">Beapp</a></span>
-      <BR/>
-      <BR/>
-      <span>Building app in Swift / SwiftUI - Working on other stuff (like NodeJS, React, ...)</span>
+  <body>
+    <div id="loading">
+      <div id="spinner"></div>
     </div>
-    <div id="about">
-      <span style="display:block;"><i class="fas fa-users"></i> &nbsp; Beapp</span>
-      <span style="display:none;"><i class="fas fa-envelope"></i> &nbsp; null</span>
-      <span style="display:block;"><i class="fas fa-link"></i> &nbsp; <a
-          href="about.me/cedric.derache">about.me/cedric.derache</a></span>
-      <span style="display:block;"><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp; Nantes</span>
-      <span style="display:none;"><i class="fas fa-user-tie"></i> &nbsp;&nbsp; Available for hire</span>
-      <div class="socials">
-        <span style="display:block;"><a href="https://www.twitter.com/DeracheCedric" target="_blank" class="socials"><i
-              class="fab fa-twitter"></i></a></span>
-        <span style="display:none !important;"><a href="https://www.dribbble.com/undefined" target="_blank"
-            class="socials"><i class="fab fa-dribbble"></i></a></span>
-        <span style="display:block;"><a href="https://www.linkedin.com/in/cédric-derache-1b5bb575/" target="_blank"
-            class="socials"><i class="fab fa-linkedin-in"></i></a></span>
-        <span style="display:none !important;"><a href="https://www.medium.com/@undefined/" target="_blank"
-            class="socials"><i class="fab fa-medium-m"></i></a></span>
-        <p>made on earth by a human</p>
+    <div id="profile">
+      <div id="links">
+        <button onclick="showMenu()" class="dropbtn">Subpages</button>
+        <div id="subPagesDropdown" class="dropdown-content">
+          <a href="/web-usdz-viewer/index.html">Web USDZ viewer</a>
+        </div>
+      </div>
+      <div
+        id="profile_img"
+        style="
+          background: url(https://avatars3.githubusercontent.com/u/3966864?v=4)
+            center;
+        "
+      ></div>
+      <div id="username">
+        <span style="display: block">Derache Cédric</span
+        ><a href="https://github.com/cederache" target="_blank">@cederache</a>
+      </div>
+      <div id="userbio" style="display: block">
+        <span
+          >iOS Developer at
+          <a href="https://beapp.fr/" target="_blank">Beapp</a></span
+        >
+        <br />
+        <br />
+        <span
+          >Building app in Swift / SwiftUI - Working on other stuff (like
+          NodeJS, React, ...)</span
+        >
+      </div>
+      <div id="about">
+        <span style="display: block"
+          ><i class="fas fa-users"></i> &nbsp;
+          <a href="https://beapp.fr" target="_blank">Beapp</a></span
+        >
+        <span style="display: none"
+          ><i class="fas fa-envelope"></i> &nbsp; null</span
+        >
+        <span style="display: block"
+          ><i class="fas fa-link"></i> &nbsp;
+          <a href="https://about.me/cedric.derache" target="_blank"
+            >about.me/cedric.derache</a
+          ></span
+        >
+        <span style="display: block"
+          ><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp; Nantes</span
+        >
+        <span style="display: none"
+          ><i class="fas fa-user-tie"></i> &nbsp;&nbsp; Available for hire</span
+        >
+        <div class="socials">
+          <span style="display: block"
+            ><a
+              href="https://www.twitter.com/DeracheCedric"
+              target="_blank"
+              class="socials"
+              ><i class="fab fa-x-twitter"></i></a
+          ></span>
+          <span style="display: block"
+            ><a
+              href="https://www.linkedin.com/in/cédric-derache-1b5bb575/"
+              target="_blank"
+              class="socials"
+              ><i class="fab fa-linkedin-in"></i></a
+          ></span>
+          <span style="display: block"
+            ><a
+              href="https://instagram.com/cedric.derache"
+              target="_blank"
+              class="socials"
+              ><i class="fab fa-instagram"></i></a
+          ></span>
+          <p>made with ❤️ by human</p>
+        </div>
       </div>
     </div>
-  </div>
-  <div id="display">
-    <div id="work">
-      <h1>Repositories.</h1>
-      <div class="projects" id="work_section">
+    <div id="display">
+      <div class="topnav">
+        <a href="#repos">Repositories</a>
+        <a href="#forks">Forks</a>
+        <input id="search" type="text" placeholder="Search..." />
+      </div>
+      <div id="repos" style="display: block">
+        <h1>Repositories.</h1>
+        <div class="projects" id="repos_section"></div>
+      </div>
+      <div id="forks" style="display: block">
+        <h1>Forks.</h1>
+        <div class="projects" id="forks_section"></div>
+      </div>
+      <div id="blog_section" style="display: none">
+        <h1>Blog.</h1>
+        <div id="blogs"></div>
+      </div>
+      <div id="footer">
+        <p>Automatic list of github repositories and forks</p>
       </div>
     </div>
-    <div id="forks" style="display: block;">
-      <h1>Forks.</h1>
-      <div class="projects" id="forks_section"></div>
-    </div>
-    <div id="blog_section" style="display: none;">
-      <h1>Blog.</h1>
-      <div id="blogs"></div>
-    </div>
-    <div id="footer">
-      <p>Automatic list of github repositories and forks</p>
-    </div>
-  </div>
-  <script type="text/javascript">
-    setTimeout(function () {
-      document.getElementById("loading").classList.add("animated");
-      document.getElementById("loading").classList.add("fadeOut");
+    <script type="text/javascript">
       setTimeout(function () {
-        document.getElementById("loading").classList.remove("animated");
-        document.getElementById("loading").classList.remove("fadeOut");
-        document.getElementById("loading").style.display = "none";
-      }, 800);
-    }, 1500);
-    $.getJSON("blog/list.json", function (blog) {
-      blog = blog || [];
-      if (blog.length == 0) {
-        return (document.getElementById("blog_section").style.display =
-          "none");
-      }
-      for (var i = 0; i < blog.length; i++) {
-        $("#blogs").append(`
+        document.getElementById("loading").classList.add("animated");
+        document.getElementById("loading").classList.add("fadeOut");
+        setTimeout(function () {
+          document.getElementById("loading").classList.remove("animated");
+          document.getElementById("loading").classList.remove("fadeOut");
+          document.getElementById("loading").style.display = "none";
+        }, 800);
+      }, 1500);
+      $.getJSON("blog/list.json", function (blog) {
+        blog = blog || [];
+        if (blog.length == 0) {
+          return (document.getElementById("blog_section").style.display =
+            "none");
+        }
+        for (var i = 0; i < blog.length; i++) {
+          $("#blogs").append(`
             <a href="./blog/${blog[i].url_title}/" target="_blank">
                 <section>
                     <img src="./blog/${blog[i].url_title}/${blog[i].top_image}">
@@ -98,43 +159,85 @@
                 </section>
             </a>
             `);
+        }
+      }).fail(function () {
+        return (document.getElementById("blog_section").style.display = "none");
+      });
+    </script>
+
+    <script type="text/javascript">
+      document
+        .getElementById("search")
+        .addEventListener("input", function (evt) {
+          filter(this.value);
+        });
+
+      function filter(searchValue) {
+        console.log(searchValue);
+        var children = [...document.getElementById("repos_section").children];
+        children.push(...document.getElementById("forks_section").children);
+        for (var i = 0; i < children.length; i++) {
+          if (
+            children[i].children[0].children[0].innerHTML
+              .toLowerCase()
+              .includes(searchValue.toLowerCase())
+          ) {
+            children[i].style.display = "block";
+          } else {
+            children[i].style.display = "none";
+          }
+        }
       }
-    }).fail(function () {
-      return (document.getElementById("blog_section").style.display = "none");
-    });
-  </script>
+    </script>
 
-  <script>
-    const magicProjectsGrid = new MagicGrid({
-      container: "#work_section",
-      animate: false,
-      gutter: 30, // default gutter size
-      static: false,
-      useMin: false,
-      maxColumns: 1,
-      useTransform: true,
-      items: 20
-    });
+    <script>
+      const magicProjectsGrid = new MagicGrid({
+        container: "#repos_section",
+        animate: false,
+        gutter: 30, // default gutter size
+        static: false,
+        useMin: false,
+        maxColumns: 1,
+        useTransform: true,
+        items: 20,
+      });
 
-    const magicForksGrid = new MagicGrid({
-      container: "#forks_section",
-      animate: false,
-      gutter: 30, // default gutter size
-      static: false,
-      useMin: false,
-      maxColumns: 1,
-      useTransform: true,
-      items: 20
-    });
+      const magicForksGrid = new MagicGrid({
+        container: "#forks_section",
+        animate: false,
+        gutter: 30, // default gutter size
+        static: false,
+        useMin: false,
+        maxColumns: 1,
+        useTransform: true,
+        items: 20,
+      });
 
-    $("document").ready(() => {
-      magicProjectsGrid.listen();
-      magicForksGrid.listen();
-    });
-  </script>
+      $("document").ready(() => {
+        magicProjectsGrid.listen();
+        magicForksGrid.listen();
+      });
+    </script>
 
+    <script type="text/javascript">
+      function showMenu() {
+        document.getElementById("subPagesDropdown").classList.toggle("show");
+      }
 
-  <script src="autoRefresh.js"></script>
-</body>
+      window.onclick = function (event) {
+        if (!event.target.matches(".dropbtn")) {
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          var i;
+          for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains("show")) {
+              openDropdown.classList.remove("show");
+            }
+          }
+        }
+      };
+    </script>
 
+    <script src="autoRefresh.js"></script>
+  </body>
 </html>

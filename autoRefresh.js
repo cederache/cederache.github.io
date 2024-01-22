@@ -1,31 +1,39 @@
 var config = (function () {
-	var json = null;
-	$.ajax({
-		'async': false,
-		'global': false,
-		'url': "/config.json",
-		'dataType': "json",
-		'success': function (data) {
-			json = data;
-		}
-	});
-	return json;
+  var json = null;
+  $.ajax({
+    async: false,
+    global: false,
+    url: "/config.json",
+    dataType: "json",
+    success: function (data) {
+      json = data;
+    },
+  });
+  return json;
 })();
 
-var headers = [{
-	"name": "User-Agent",
-	"value": config[0].username
-}];
+var headers = [
+  {
+    name: "User-Agent",
+    value: config[0].username,
+  },
+];
 
+/**
+ * Performs a synchronous HTTP GET request.
+ * @param {string} theUrl - The URL to send the request to.
+ * @param {Array} headers - An array of headers to include in the request.
+ * Each header object should have a `name` property (the header name) and a `value` property (the header value).
+ * @returns {string} - The response text from the HTTP GET request.
+ */
 function httpGet(theUrl, headers) {
-	var xmlHttp = new XMLHttpRequest();
-	xmlHttp.open("GET", theUrl, false); // false for synchronous request
-	for (index in headers) {
-		var header = headers[index];
-		xmlHttp.setRequestHeader(header["name"], header["value"]);
-	}
-	xmlHttp.send(null);
-	return xmlHttp.responseText;
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", theUrl, false); // false for synchronous request
+  headers.forEach((header) => {
+    xhr.setRequestHeader(header.name, header.value);
+  });
+  xhr.send(null);
+  return xhr.responseText;
 }
 
 const reposResponse = JSON.parse(httpGet(`https://api.github.com/users/${config[0].username}/repos`, headers)).sort((a, b) => {
@@ -38,35 +46,44 @@ const reposResponse = JSON.parse(httpGet(`https://api.github.com/users/${config[
 	return bUpdatedAt - aUpdatedAt;
 });
 
-const work_section = document.getElementById("work_section");
+const repos_section = document.getElementById("repos_section");
 const fork_section = document.getElementById("forks_section");
 
-var workInnerHtml = "";
+var reposInnerHtml = "";
 var forkInnerHtml = "";
 // Loop over repos
 for (index in reposResponse) {
-	var repo = reposResponse[index];
+  var repo = reposResponse[index];
 
-	var innerHtml = `<a href="${repo.html_url}" target="_blank">
+  if (repo.language === null) {
+    repo.language = "-";
+  }
+
+  var innerHtml =
+    `<a href="${repo.html_url}" target="_blank">
 						<section>
 							<div class="section_title">${repo.name}</div>` +
-							(repo.description !== null ? `<div class="about_section">
+    (repo.description !== null
+      ? `<div class="about_section">
 								<span style="display:block;">${repo.description}</span>
-							</div>` : '') +
-							`<div class="bottom_section">
-								<span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; ${repo.language}</span>
+							</div>`
+      : "") +
+    `<div class="bottom_section">
+								<span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; ${
+                  repo.language
+                }</span>
 								<span><i class="fas fa-star"></i>&nbsp; ${repo.stargazers_count}</span>
 								<span><i class="fas fa-code-branch"></i>&nbsp; ${repo.forks_count}</span>
 							</div>
 							<span style="float:right">Last modification : ${(new Date(repo.updated_at)).toLocaleDateString()}</span>
 						</section>
 						</a>`;
-	if (repo.fork) {
-		forkInnerHtml += innerHtml;
-	} else {
-		workInnerHtml += innerHtml;
-	}
+  if (repo.fork) {
+    forkInnerHtml += innerHtml;
+  } else {
+    reposInnerHtml += innerHtml;
+  }
 }
 
-work_section.innerHTML = workInnerHtml;
+repos_section.innerHTML = reposInnerHtml;
 fork_section.innerHTML = forkInnerHtml;
