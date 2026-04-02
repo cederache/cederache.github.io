@@ -5,6 +5,16 @@ on:
     types: [closed]
     branches:
       - master
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: "PR number to build (refs/pull/N/head). Overrides ref and branch dropdown when set."
+        required: false
+        type: string
+      ref:
+        description: "Branch, tag, or full SHA (used only if pr is empty; if ref is empty too, uses the branch from Run workflow)"
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -17,13 +27,13 @@ concurrency:
 
 jobs:
   build:
-    if: github.event.pull_request.merged == true
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: master
+          ref: ${{ github.event_name != 'workflow_dispatch' && 'master' || (github.event.inputs.pr != '' && format('refs/pull/{0}/head', github.event.inputs.pr) || (github.event.inputs.ref != '' && github.event.inputs.ref || github.ref)) }}
 
       - uses: pnpm/action-setup@v4
         with:
@@ -47,7 +57,7 @@ jobs:
           path: dist
 
   deploy:
-    if: github.event.pull_request.merged == true
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     needs: build
     runs-on: ubuntu-latest
     environment:
